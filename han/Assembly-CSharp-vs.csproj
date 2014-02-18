@@ -46,11 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraFollow.cs" />
      <Compile Include="Assets\Enemy.cs" />
      <Compile Include="Assets\GenerateWorld.cs" />
-     <Compile Include="Assets\Score.cs" />
      <Compile Include="Assets\ninjaCont.cs" />
+     <Compile Include="Assets\phochang.cs" />
+     <Compile Include="Assets\pyochang.cs" />
      <Compile Include="Assets\throwWeapon.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Rooms.xml" />

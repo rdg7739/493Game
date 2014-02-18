@@ -5,8 +5,6 @@ public class ninjaCont : MonoBehaviour {
 	[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
-	public bool jump = false;				// Condition for whether the player should jump.
-	
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
 	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
@@ -16,8 +14,8 @@ public class ninjaCont : MonoBehaviour {
 	void Update()
 	{
 		// If the jump button is pressed and the player is grounded then the player should jump.
-		if (Input.GetKeyDown (KeyCode.UpArrow) && jump == false) {
-			jump = true;
+		if (Input.GetKeyDown (KeyCode.UpArrow) && isFalling == false) {
+			isFalling = true;
 
 		}
 	}
@@ -47,18 +45,19 @@ public class ninjaCont : MonoBehaviour {
 			// ... flip the player.
 			Flip();
 		
-		if(jump)
+		if(isFalling)
 		{
-			jump = false;
+		
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
-
+			isFalling = false;
 		}
+
 	}
-	void OnCollidStay(){
-		jump = false;
+	void OnCollider(){
+		isFalling = false;
 	}
-	
+
 	void Flip ()
 	{
 		// Switch the way the player is labelled as facing.
