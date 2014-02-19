@@ -68,11 +68,6 @@ public class Enemy : MonoBehaviour
 		{
 			c.isTrigger = true;
 		}
-
-		// Create a vector that is just above the enemy.
-		Vector3 scorePos;
-		scorePos = transform.position;
-		scorePos.y += 1.5f;
 		Destroy (gameObject);
 	}
 

@@ -10,13 +10,31 @@ public class ninjaCont : MonoBehaviour {
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
 	public float jumpHeight = 8;
 	private bool isFalling = false;			// Whether or not the player is grounded.
-
+	public int jumpCount = 2; 
+	private bool isSide = false;
+	private bool isDown = false;
+	private float tempTime = 0.0f;
 	void Update()
 	{
+		if (Input.GetKeyDown (KeyCode.C)) {
+			transform.position = new Vector3(transform.position.x+10, transform.position.y, transform.position.z);
+		}
+		if (Input.GetKeyDown (KeyCode.Z)) {
+			transform.position = new Vector3(transform.position.x-10, transform.position.y, transform.position.z);
+		}
+		if (Input.GetKeyDown (KeyCode.S)) {
+			tempTime=Time.time;
+			transform.position = new Vector3(transform.position.x, transform.position.y-5, transform.position.z);
+			isDown = true;
+		}
+		if ( Time.time -tempTime > 5 && isDown == true) {
+			isDown = false;
+			transform.position = new Vector3(transform.position.x, transform.position.y+5, transform.position.z);
+		}
 		// If the jump button is pressed and the player is grounded then the player should jump.
-		if (Input.GetKeyDown (KeyCode.UpArrow) && isFalling == false) {
+		if (Input.GetKeyDown (KeyCode.UpArrow) && isFalling == false && jumpCount > 0) {
 			isFalling = true;
-
+			jumpCount--;
 		}
 	}
 
@@ -45,17 +63,30 @@ public class ninjaCont : MonoBehaviour {
 			// ... flip the player.
 			Flip();
 		
-		if(isFalling)
+		if(isFalling )
 		{
 		
 			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			isFalling = false;
 		}
+		if(isSide){
+			transform.position = new Vector3(transform.position.x, transform.position.y-0.02f, transform.position.z);
+
+		}
 
 	}
-	void OnCollider(){
-		isFalling = false;
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "ground") {
+			isFalling = false;
+			jumpCount = 2;
+			isSide = false;
+		}
+		if (col.gameObject.tag == "sideWall") {
+			isFalling = false;
+			jumpCount = 2;
+			isSide = true;
+		}
 	}
 
 	void Flip ()
