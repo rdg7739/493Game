@@ -18,7 +18,7 @@ public class throwWeapon: MonoBehaviour
 	void Update ()
 	{
 		// If the fire button is pressed...
-		if(Input.GetKeyDown(KeyCode.X))
+		if(Input.GetKeyDown(KeyCode.S))
 		{
 			
 			// If the player is facing right...

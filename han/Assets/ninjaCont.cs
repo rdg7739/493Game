@@ -14,28 +14,46 @@ public class ninjaCont : MonoBehaviour {
 	private bool isSide = false;
 	private bool isDown = false;
 	private float tempTime = 0.0f;
+	private float comboTime1 = 0.0f;
+	private float comboTime2 = 0.0f;
 	void Update()
-	{
-		if (Input.GetKeyDown (KeyCode.C)) {
+	{	//teleport to right
+		if (Input.GetKeyDown (KeyCode.D)) {
 			transform.position = new Vector3(transform.position.x+10, transform.position.y, transform.position.z);
-		}
-		if (Input.GetKeyDown (KeyCode.Z)) {
+		}//teleport to left
+		if (Input.GetKeyDown (KeyCode.A)) {
 			transform.position = new Vector3(transform.position.x-10, transform.position.y, transform.position.z);
-		}
-		if (Input.GetKeyDown (KeyCode.S)) {
+		}//teleport to down
+		if (Input.GetKeyDown (KeyCode.X)) {
 			tempTime=Time.time;
 			transform.position = new Vector3(transform.position.x, transform.position.y-5, transform.position.z);
 			isDown = true;
-		}
-		if ( Time.time -tempTime > 5 && isDown == true) {
+		}//teleport to up
+		if (Input.GetKeyDown (KeyCode.W)) {
+		//	tempTime=Time.time;
+			transform.position = new Vector3(transform.position.x, transform.position.y+5, transform.position.z);
+			isDown = false;
+		}//move up after 3 sec 
+		if ( Time.time -tempTime > 3 && isDown == true) {
 			isDown = false;
 			transform.position = new Vector3(transform.position.x, transform.position.y+5, transform.position.z);
 		}
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if (Input.GetKeyDown (KeyCode.UpArrow) && isFalling == false && jumpCount > 0) {
+			tempTime = Time.time;
 			isFalling = true;
 			jumpCount--;
 		}
+	/*	if(Input.GetKeyDown (KeyCode.DownArrow){
+			comboTime1 = Time.time;
+		}
+		if(Input.GetKeyDown(KeyCode.RightArrow) && Time.time - comboTime > 0.2f){
+			comboTime2 = Time.time;
+		}
+		if(Input.GetKeyDown(KeyCode.RightArrow) && Time.time - comboTime > 0.2f){
+			comboTime2 = Time.time;
+		}
+*/
 	}
 
 	
