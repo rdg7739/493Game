@@ -1,0 +1,24 @@
+Z		Slash
+C		Throw
+X		Combo
+Space or ^	Jump
+Down 		Crouch
+-> 		Move Right
+<-		Move Left
+
+-> or <- + down		Slide
+Slide + Z 		Slide Slash
+Slide + C		Low Throw
+
+
+-> or <- + Z		Moving Slash
+Moving Slash + Z	2nd Moving Slash
+2nd Moving Slash + X	Flurry of attacks
+-> or <- + C		Moving Throw
+Moving Slash + C	2nd Moving Throw
+2nd Moving Slash + C	Triple Throw
+
+^ + Z		Jumping Spin Slash
+
+
+
