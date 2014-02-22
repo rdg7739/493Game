@@ -6,9 +6,8 @@ public class ninjaCont : MonoBehaviour {
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
+	private float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
-	public float jumpHeight = 8;
 	private bool isFalling = false;			// Whether or not the player is grounded.
 	public int jumpCount = 2; 
 	private bool isSide = false;
@@ -16,62 +15,62 @@ public class ninjaCont : MonoBehaviour {
 	private float tempTime = 0.0f;
 	private float comboTime1 = 0.0f;
 	private float comboTime2 = 0.0f;
-	void Update()
-	{	//teleport to right
-		if (Input.GetKeyDown (KeyCode.D)) {
-			transform.position = new Vector3(transform.position.x+10, transform.position.y, transform.position.z);
-		}//teleport to left
-		if (Input.GetKeyDown (KeyCode.A)) {
-			transform.position = new Vector3(transform.position.x-10, transform.position.y, transform.position.z);
-		}//teleport to down
-		if (Input.GetKeyDown (KeyCode.X)) {
-			tempTime=Time.time;
-			transform.position = new Vector3(transform.position.x, transform.position.y-5, transform.position.z);
-			isDown = true;
-		}//teleport to up
-		if (Input.GetKeyDown (KeyCode.W)) {
-		//	tempTime=Time.time;
-			transform.position = new Vector3(transform.position.x, transform.position.y+5, transform.position.z);
-			isDown = false;
-		}//move up after 3 sec 
-		if ( Time.time -tempTime > 3 && isDown == true) {
-			isDown = false;
-			transform.position = new Vector3(transform.position.x, transform.position.y+5, transform.position.z);
+	public Sprite player;
+	public Sprite crouch;
+	void Awake(){
+		SpriteRenderer sprRenderer = (SpriteRenderer)renderer;
+		sprRenderer.sprite = player;
+		BoxCollider2D boxCol = (BoxCollider2D)collider2D;
+		boxCol.size = new Vector2(2.08f, 2.46f);
+		maxSpeed = 10f;
 		}
+	void Update(){
+
 		// If the jump button is pressed and the player is grounded then the player should jump.
-		if (Input.GetKeyDown (KeyCode.UpArrow) && isFalling == false && jumpCount > 0) {
-			tempTime = Time.time;
-			isFalling = true;
-			jumpCount--;
+		
+		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)){
+			if(isFalling == false && jumpCount > 0)
+				jump();
 		}
-	/*	if(Input.GetKeyDown (KeyCode.DownArrow){
-			comboTime1 = Time.time;
+		if (Input.GetKeyDown(KeyCode.DownArrow)){
+			SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
+			sprRenderer.sprite = crouch;
+			transform.position = new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z);
+			BoxCollider2D boxCol = (BoxCollider2D)collider2D;
+			boxCol.size = new Vector2(2.08f, 1.23f);
 		}
-		if(Input.GetKeyDown(KeyCode.RightArrow) && Time.time - comboTime > 0.2f){
-			comboTime2 = Time.time;
+		if (Input.GetKeyUp(KeyCode.DownArrow)){
+			Awake();
 		}
-		if(Input.GetKeyDown(KeyCode.RightArrow) && Time.time - comboTime > 0.2f){
-			comboTime2 = Time.time;
-		}
-*/
+	}
+
+	void jump(){
+		tempTime = Time.time;
+		isFalling = true;
+		jumpCount--;
 	}
 
 	
 	void FixedUpdate ()
 	{
+		bool isPressed = false;
 		// Cache the horizontal input.
 		float h = Input.GetAxis("Horizontal");
-
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-		if(h * rigidbody2D.velocity.x < maxSpeed)
-			// ... add a force to the player.
-			rigidbody2D.AddForce(Vector2.right * h * moveForce);
+		if (h * rigidbody2D.velocity.x < maxSpeed) {
+			if(Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.Space))
+				isPressed = true;
+			if(!isPressed)
+				rigidbody2D.AddForce (Vector2.right * h * moveForce);
+		}
 		
 		// If the player's horizontal velocity is greater than the maxSpeed...
-		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed)
-			// ... set the player's velocity to the maxSpeed in the x axis.
-			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
-		
+		if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed) {
+			if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.Space))
+				isPressed = true;
+			if (!isPressed)	
+				rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+		}
 		// If the input is moving the player right and the player is facing left...
 		if(h > 0 && !facingRight)
 			// ... flip the player.
@@ -81,18 +80,19 @@ public class ninjaCont : MonoBehaviour {
 			// ... flip the player.
 			Flip();
 		
-		if(isFalling )
+		if(isFalling)
 		{
-		
-			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			if (isSide)
+				rigidbody2D.AddForce (new Vector2 (-h * jumpForce/2, jumpForce* 1.3f));
+			
+			if(!isSide)
+				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			isFalling = false;
 		}
-		if(isSide){
-			transform.position = new Vector3(transform.position.x, transform.position.y-0.02f, transform.position.z);
-
+		if (isSide) {
+			transform.position = new Vector3(transform.position.x, transform.position.y-0.1f, transform.position.z);
 		}
-
 	}
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "ground") {
@@ -103,8 +103,7 @@ public class ninjaCont : MonoBehaviour {
 		if (col.gameObject.tag == "sideWall") {
 			isFalling = false;
 			jumpCount = 2;
-			isSide = true;
-		}
+			isSide = true;		}
 	}
 
 	void Flip ()

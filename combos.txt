@@ -1,7 +1,5 @@
 Z		Slash
-C		Throw
 X		Combo
-Space or ^	Jump
 Down 		Crouch
 -> 		Move Right
 <-		Move Left
@@ -9,7 +7,6 @@ Down 		Crouch
 -> or <- + down		Slide
 Slide + Z 		Slide Slash
 Slide + C		Low Throw
-
 
 -> or <- + Z		Moving Slash
 Moving Slash + Z	2nd Moving Slash
