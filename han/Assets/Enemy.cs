@@ -3,10 +3,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-	public float moveSpeed = 2f;		// The speed the enemy moves at.
+	public Transform target;
+	public float moveSpeed = 5f;		// The speed the enemy moves at.
 	public int HP = 2;					// How many times the enemy can be hit before it dies.
-	public Sprite deadEnemy;			// A sprite of the enemy when it's dead.
-	public Sprite damagedEnemy;			// An optional sprite of the enemy when it's damaged.
 	public float deathSpinMin = -100f;			// A value to give the minimum amount of Torque when dying
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
 
@@ -18,26 +17,21 @@ public class Enemy : MonoBehaviour
 
 	void Awake()
 	{
-		// Setting up the references.
-	//	ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
-	//	score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
-	void Update()
-	{
-		if(characterDetected)
-		{
-			GameObject player = gameObject.Find("Player");
-			Transform monster = transform.parent.gameObject;
-			Vector3 moveVector = player.transform.position - monster.transform.position;
-			moveVector.ClampMagnitude(moveSpeed * Time.deltaTime);
-			monster.transform.Translate(moveVector);
+	void Start(){
+				target = GameObject.FindWithTag ("Player").transform;
 		}
-	}
+
 
 	void FixedUpdate ()
 	{
+		float distance = target.position.x - transform.position.x;
+		if(distance > 0)
+			transform.position += transform.right * moveSpeed * Time.deltaTime;
+		else 
+			transform.position += transform.right *  -1 *moveSpeed * Time.deltaTime;
 		// Create an array of all the colliders in front of the enemy.
 		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 
@@ -73,7 +67,7 @@ public class Enemy : MonoBehaviour
 
 		// Allow the enemy to rotate and spin it by adding a torque.
 		rigidbody2D.fixedAngle = false;
-		rigidbody2D.AddTorque(Random.Range(deathSpinMin,deathSpinMax));
+		rigidbody2D.AddTorque(10f);
 
 		// Find all of the colliders on the gameobject and set them all to be triggers.
 		Collider2D[] cols = GetComponents<Collider2D>();
@@ -83,17 +77,7 @@ public class Enemy : MonoBehaviour
 		}
 		Destroy (gameObject);
 	}
-	void OnTriggerEnter(Collider col)
-	{
-		if(col.transform.tag == "Player")
-			characterDetected = true;
-	}
-	
-	void OnTriggerExit(Collider col)
-	{
-		if(col.transform.tag == "Player")
-			characterDetected = false;
-	}
+
 
 	public void Flip()
 	{

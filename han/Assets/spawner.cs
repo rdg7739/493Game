@@ -5,7 +5,7 @@ public class spawner : MonoBehaviour {
 	int i = 0;
 	public Transform target;
 	public float spawnTime = 3.0f;
-	float unit = 10;
+	public float unit = 10;
 	private float tempTime;
 	void Awake(){
 				tempTime = Time.time;
