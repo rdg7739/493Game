@@ -4,7 +4,6 @@ using System.Xml;
 using System.IO;
 
 public class GenerateWorld : MonoBehaviour {
-
 	int sizeOfShip = 20;
 	int miniBossFrequency = 5;
 	int lastRoom = -1;

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Enemy.cs" />
+     <Compile Include="Assets\FollowPlayer.cs" />
      <Compile Include="Assets\GenerateWorld.cs" />
      <Compile Include="Assets\ninjaCont.cs" />
      <Compile Include="Assets\pyochang.cs" />
