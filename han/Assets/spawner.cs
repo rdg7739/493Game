@@ -7,6 +7,7 @@ public class spawner : MonoBehaviour {
 	public float spawnTime = 3.0f;
 	public float unit = 10;
 	private float tempTime;
+	public string monster;
 	void Awake(){
 				tempTime = Time.time;
 		}
@@ -15,7 +16,7 @@ public class spawner : MonoBehaviour {
 		float distance = Vector2.Distance(target.position, transform.position);
 		if(distance < unit && Time.time - tempTime > spawnTime ){
 			GameObject gameObj = null;
-			gameObj = (GameObject) Instantiate(Resources.Load("enemy"));
+			gameObj = (GameObject) Instantiate(Resources.Load(monster));
 			gameObj.transform.position = new Vector2(transform.position.x, transform.position.y);
 			tempTime = Time.time;
 		}

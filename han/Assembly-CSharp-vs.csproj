@@ -50,7 +50,9 @@
      <Compile Include="Assets\FollowPlayer.cs" />
      <Compile Include="Assets\GenerateWorld.cs" />
      <Compile Include="Assets\MonsterAttack.cs" />
+     <Compile Include="Assets\fireball.cs" />
      <Compile Include="Assets\ninjaCont.cs" />
+     <Compile Include="Assets\poison.cs" />
      <Compile Include="Assets\pyochang.cs" />
      <Compile Include="Assets\spawner.cs" />
      <Compile Include="Assets\sword.cs" />
