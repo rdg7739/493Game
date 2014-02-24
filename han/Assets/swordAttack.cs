@@ -13,6 +13,9 @@ public class swordAttack : MonoBehaviour {
 			BoxCollider2D boxCol = (BoxCollider2D)collider2D;
 			boxCol.size = new Vector2(0,0);		
 		}
+		transform.localScale = new Vector2(transform.localScale.x * 0.25f, transform.localScale.y * 0.25f);
+	//	transform.localRotation = new Quaternion(transform.localRotation.x, transform.localRotation.y, 180);
+
 	}
 
 	// Update is called once per frame
@@ -22,12 +25,21 @@ public class swordAttack : MonoBehaviour {
 			SpriteRenderer sprRenderer = (SpriteRenderer)renderer;
 			sprRenderer.sprite = dangum;
 			BoxCollider2D boxCol = (BoxCollider2D)collider2D;
-			boxCol.size = new Vector2(1.3f, 1);
+			boxCol.size = new Vector2(5.2f, 4);
 		}
 		if (Input.GetKeyUp (KeyCode.Z)) {
-			Awake();	
+			back();	
 		}
 
+	}
+	void back()
+	{
+		if (Input.GetKeyUp (KeyCode.Z)) {
+			SpriteRenderer sprRenderer = (SpriteRenderer)renderer;
+			sprRenderer.sprite = null;
+			BoxCollider2D boxCol = (BoxCollider2D)collider2D;
+			boxCol.size = new Vector2(0,0);		
+		}
 	}
 	void OnTriggerEnter2D (Collider2D col) 
 	{
