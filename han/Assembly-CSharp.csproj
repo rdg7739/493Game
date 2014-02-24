@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{8E767AE4-2EB6-1E1B-7D1F-FE36CFBB6E32}</ProjectGuid>
+	<ProjectGuid>{5B37252B-8992-91DF-A270-F7DE577BD6E1}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -49,17 +49,18 @@
      <Compile Include="Assets\Enemy.cs" />
      <Compile Include="Assets\GenerateWorld.cs" />
      <Compile Include="Assets\ninjaCont.cs" />
-     <Compile Include="Assets\phochang.cs" />
      <Compile Include="Assets\pyochang.cs" />
+     <Compile Include="Assets\sword.cs" />
+     <Compile Include="Assets\swordAttack.cs" />
      <Compile Include="Assets\throwWeapon.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Rooms.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C4C0D4E3-36F7-6354-9792-EB28E2AFB120}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{9DFF61C9-200B-0348-06A1-9D446CF8E5F5}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{E397A6A4-8DDF-AB2E-4840-41A59BB2ECB5}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{AC3940FB-837C-28C7-C7F1-8BD35E38026C}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

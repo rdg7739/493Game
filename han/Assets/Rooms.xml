@@ -1,5 +1,6 @@
 <Rooms>
 	<Room>
+		<RoomType>Basic</RoomType>
 		<Object>
 			<Type>1</Type>
 			<PositionX>4</PositionX>
@@ -29,6 +30,7 @@
 		<YOffSet>-3.35</YOffSet>
 	</Room>
 	<Room>
+		<RoomType>Basic</RoomType>
 		<Object>
 			<Type>1</Type>
 			<PositionX>4</PositionX>
@@ -36,7 +38,6 @@
 			<RotationZ>0</RotationZ>
 			<ScaleX>8</ScaleX>
 			<ScaleY>1</ScaleY>
-
 		</Object>
 		<Object>
 			<Type>1</Type>
@@ -57,4 +58,59 @@
 		<XOffSet>37</XOffSet>
 		<YOffSet>3.35</YOffSet>
 	</Room>
+	<Room>
+		<RoomType>Mini-Boss</RoomType>
+		<Object>
+			<Type>1</Type>
+			<PositionX>5</PositionX>
+			<PositionY>0</PositionY>
+			<RotationZ>0</RotationZ>
+			<ScaleX>10</ScaleX>
+			<ScaleY>1</ScaleY>
+
+		</Object>
+		<Object>
+			<Type>1</Type>
+			<PositionX>10.5</PositionX>
+			<PositionY>1</PositionY>
+			<RotationZ>0</RotationZ>
+			<ScaleX>1</ScaleX>
+			<ScaleY>3</ScaleY>
+		</Object>
+		<Object>
+			<Type>1</Type>
+			<PositionX>16</PositionX>
+			<PositionY>0</PositionY>
+			<RotationZ>0</RotationZ>
+			<ScaleX>10</ScaleX>
+			<ScaleY>1</ScaleY>
+		</Object>
+		<XOffSet>21</XOffSet>
+		<YOffSet>0</YOffSet>
+	</Room>
+	<Room>
+		<RoomType>Boss</RoomType>
+		<Object>
+			<Type>1</Type>
+			<PositionX>15</PositionX>
+			<PositionY>0</PositionY>
+			<RotationZ>0</RotationZ>
+			<ScaleX>30</ScaleX>
+			<ScaleY>1</ScaleY>
+
+		</Object>
+		<Object>
+			<Type>1</Type>
+			<PositionX>30.5</PositionX>
+			<PositionY>7</PositionY>
+			<RotationZ>0</RotationZ>
+			<ScaleX>1</ScaleX>
+			<ScaleY>15</ScaleY>
+		</Object>
+		<XOffSet>0</XOffSet>
+		<YOffSet>0</YOffSet>
+	</Room>
+
+
+
 </Rooms>

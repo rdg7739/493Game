@@ -5,7 +5,9 @@ using System.IO;
 
 public class GenerateWorld : MonoBehaviour {
 
-	int sizeOfShip = 13;
+	int sizeOfShip = 20;
+	int miniBossFrequency = 5;
+	int lastRoom = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +19,28 @@ public class GenerateWorld : MonoBehaviour {
 		//determine the layout of the ship
 		for(int i = 0; i < sizeOfShip; i++){
 
-			alienShip.Add( rooms[Random.Range(0, rooms.Count ) ] );
+			if(i % miniBossFrequency != miniBossFrequency - 1){
 
+				int random = Random.Range(0, ((ArrayList)rooms[0]).Count );
+
+				while( random == lastRoom){
+
+					random = Random.Range(0, ((ArrayList)rooms[0]).Count );
+				}
+
+				lastRoom = random;
+
+				alienShip.Add( ((ArrayList)rooms[0])[random] );
+			}
+			else{
+
+				alienShip.Add( ((ArrayList)rooms[1])[Random.Range(0, ((ArrayList)rooms[1]).Count )] );
+			}
 
 		}
+
+		alienShip[sizeOfShip - 1] = ((ArrayList)rooms[2])[Random.Range(0, ((ArrayList)rooms[2]).Count )];
+
 
 		float X = 0;
 		float Y = 0;
@@ -48,9 +68,29 @@ public class GenerateWorld : MonoBehaviour {
 
 		//roomFile.ChildNodes.size();
 
-		ArrayList rooms = new ArrayList();
+		ArrayList roomSets = new ArrayList();
+
+		roomSets.Add (new ArrayList());	//Basic Room
+		roomSets.Add (new ArrayList());	//Mini-Boss Room
+		roomSets.Add (new ArrayList());	//Boss room
 
 		foreach( XmlNode roomXML in roomFile.SelectNodes("Rooms//Room")){
+
+			ArrayList rooms = null;
+
+			switch(roomXML.SelectSingleNode("RoomType").InnerText){
+
+			case "Mini-Boss":
+				rooms = ((ArrayList)roomSets[1]);
+				break;
+			case "Boss":
+				rooms = ((ArrayList)roomSets[2]);
+				break;
+			default:
+				rooms = ((ArrayList)roomSets[0]);
+				break;
+
+			}
 
 			//TODO: add error checking code
 			Room room = new Room(float.Parse(roomXML.SelectSingleNode("XOffSet").InnerText), float.Parse (roomXML.SelectSingleNode("YOffSet").InnerText));
@@ -70,7 +110,7 @@ public class GenerateWorld : MonoBehaviour {
 		}
 
 
-		return rooms;
+		return roomSets;
 
 	}
 
