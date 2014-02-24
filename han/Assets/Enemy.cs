@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
 	private bool dead = false;			// Whether or not the enemy is dead.
+	private bool characterDetected = false;
 
 	void Awake()
 	{
@@ -21,6 +22,18 @@ public class Enemy : MonoBehaviour
 	//	ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
 	//	score = GameObject.Find("Score").GetComponent<Score>();
+	}
+
+	void Update()
+	{
+		if(characterDetected)
+		{
+			GameObject player = gameObject.Find("Player");
+			Transform monster = transform.parent.gameObject;
+			Vector3 moveVector = player.transform.position - monster.transform.position;
+			moveVector.ClampMagnitude(moveSpeed * Time.deltaTime);
+			monster.transform.Translate(moveVector);
+		}
 	}
 
 	void FixedUpdate ()
@@ -70,7 +83,17 @@ public class Enemy : MonoBehaviour
 		}
 		Destroy (gameObject);
 	}
-
+	void OnTriggerEnter(Collider col)
+	{
+		if(col.transform.tag == "Player")
+			characterDetected = true;
+	}
+	
+	void OnTriggerExit(Collider col)
+	{
+		if(col.transform.tag == "Player")
+			characterDetected = false;
+	}
 
 	public void Flip()
 	{

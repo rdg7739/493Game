@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\swordAttack.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy.cs">
     <Files>
-      <File FileName="Assets\swordAttack.cs" Line="11" Column="44" />
-      <File FileName="Assets\GenerateWorld.cs" Line="159" Column="6" />
+      <File FileName="Assets\GenerateWorld.cs" Line="166" Column="22" />
+      <File FileName="Assets\ninjaCont.cs" Line="48" Column="12" />
+      <File FileName="Assets\spawner.cs" Line="25" Column="1" />
+      <File FileName="Assets\Enemy.cs" Line="37" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

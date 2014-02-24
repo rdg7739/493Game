@@ -144,11 +144,12 @@ public class GenerateWorld : MonoBehaviour {
 
 				GameObject gameObj = null;
 
-				if(obj.type.Equals("1")){
+				//if(obj.type.Equals("ground")){
 
-					gameObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+				gameObj = (GameObject) Instantiate(Resources.Load("ground"));
 
-				}
+
+				//}
 				//TODO: Add more types of game objects
 
 

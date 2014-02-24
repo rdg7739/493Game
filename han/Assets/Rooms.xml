@@ -2,7 +2,7 @@
 	<Room>
 		<RoomType>Basic</RoomType>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>4</PositionX>
 			<PositionY>0</PositionY>
 			<RotationZ>0</RotationZ>
@@ -11,7 +11,7 @@
 
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>12.5</PositionX>
 			<PositionY>-1.7</PositionY>
 			<RotationZ>-20</RotationZ>
@@ -19,7 +19,7 @@
 			<ScaleY>1</ScaleY>
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>27</PositionX>
 			<PositionY>-3.35</PositionY>
 			<RotationZ>0</RotationZ>
@@ -32,7 +32,7 @@
 	<Room>
 		<RoomType>Basic</RoomType>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>4</PositionX>
 			<PositionY>0</PositionY>
 			<RotationZ>0</RotationZ>
@@ -40,7 +40,7 @@
 			<ScaleY>1</ScaleY>
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>12.5</PositionX>
 			<PositionY>1.7</PositionY>
 			<RotationZ>20</RotationZ>
@@ -48,7 +48,7 @@
 			<ScaleY>1</ScaleY>
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>27</PositionX>
 			<PositionY>3.35</PositionY>
 			<RotationZ>0</RotationZ>
@@ -61,7 +61,7 @@
 	<Room>
 		<RoomType>Mini-Boss</RoomType>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>5</PositionX>
 			<PositionY>0</PositionY>
 			<RotationZ>0</RotationZ>
@@ -70,7 +70,7 @@
 
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>10.5</PositionX>
 			<PositionY>1</PositionY>
 			<RotationZ>0</RotationZ>
@@ -78,7 +78,7 @@
 			<ScaleY>3</ScaleY>
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>16</PositionX>
 			<PositionY>0</PositionY>
 			<RotationZ>0</RotationZ>
@@ -91,7 +91,7 @@
 	<Room>
 		<RoomType>Boss</RoomType>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>15</PositionX>
 			<PositionY>0</PositionY>
 			<RotationZ>0</RotationZ>
@@ -100,7 +100,7 @@
 
 		</Object>
 		<Object>
-			<Type>1</Type>
+			<Type>ground</Type>
 			<PositionX>30.5</PositionX>
 			<PositionY>7</PositionY>
 			<RotationZ>0</RotationZ>
